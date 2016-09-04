@@ -3,6 +3,10 @@ comment. Add your CSS code
 from Unit 1 - 5 below  */
 body {
 	text-align:center;
+	background-image:url("background_img.jpg");
+	background-repeat:no-repeat;
+	background-size:cover;
+
 }
 h1 {
 	color:rgb(2,132,130);
@@ -35,10 +39,12 @@ nav a {
 	padding:35px;
 	display:block;
 	float:left;
+	color:#808080;
 }
 
 nav a:hover {
 	background-color:#ee5f3c;
+	color:#808080;
 }
 
 .clearfix:after {
@@ -53,3 +59,36 @@ nav a:hover {
 footer {
 	background-color:#808080;
 }
+
+img {
+	height:200px;
+	width:150px;
+	border:1px solid black;
+	background-color:yellow;
+	border-radius:10px;
+}
+
+.goodLuck {
+	height:50%;
+	width:35%;
+	border-radius:15%;
+	padding-margin:200px;
+}
+
+.bigger {
+	font-size: 1.5em;
+}
+
+#game-board {
+	max-width:;
+}
+
+a {
+	color:#808080;
+}
+
+#yellow {
+	color:yellow;
+}
+
+
