@@ -21,38 +21,53 @@ var score = 0;
 // An empty placeholder for what will be our cards
 var cardElement;
 
+var wonRound;
+
+
+
+var gameBoard = document.getElementById('game-board');
 
 function flipCard() {
+	var flipped = this.getAttribute('data-flipped');
+	if (flipped !== 'true'){
 		if (this.getAttribute('data-card') === 'king'){
-		this.innerHTML = "<img src='king_img.jpg'>";
+			this.innerHTML = "<img src='king_img.jpg'>";
+		} else {
+			this.innerHTML = "<img src='queen_img.jpg'>";
+		}
+		this.setAttribute('data-flipped','true');
+		isTwoCards(this);
 	} else {
-		this.innerHTML = "<img src='queen_img.jpg'>";
+		alert("You flipped this card already. Please pick another one.");
 	}
+
 }
 
 var cardsInPlay = [];
 
 var isMatch = function () {
 	if (cardsInPlay[0] == cardsInPlay[1]) {
+		wonRound = true;
 		score++;
- 		return('Great! Thats a match!!!')
+ 		return('Great! Thats a match!!!');
 	} else {
+		wonRound = false;
 		score--;
  		return("Uh Oh! The cards don't match.");
 	}
 };
 
-var isTwoCards = function() {
-	cardsInPlay.push(this.getAttribute('data-card'));
-
+var isTwoCards = function(object) {
+	cardsInPlay.push(object.getAttribute('data-card'));
 	if(cardsInPlay.length==2) {
-		return(isMatch());
+		alert(isMatch() + " Your total score is " + score);
+		gameBoard.innerHTML = "";
+		createBoard();
+		cardsInPlay = [];
 	}
-
-	cardsInPlay = [];
 };
 
-var gameBoard = document.getElementById('game-board');
+
 
 var deck = ['queen','queen','king','king'];
 
@@ -75,25 +90,23 @@ function shuffle(deck) {
   return deck;
 }
 
+/***ToDo: 
+Find a way to shuffle cards, so the 1st round isn't always the same.
+*****/
+
 var createBoard = function() {
-	var cards = shuffle(deck);
+	var cards;
+	if (wonRound) {
+		cards=shuffle(deck);
+	} else {
+		cards=deck;
+	}
 	for(var i=0;i<cards.length;i++) {
 		cardElement=document.createElement('div');
 		cardElement.className = 'card';
 		gameBoard.appendChild(cardElement);
-		cardElement.setAttribute('data-card', cards[i]);
+		cardElement.setAttribute('data-card', cards[i]);		
 		cardElement.addEventListener('click', flipCard);
-		cardElement.addEventListener('click', isTwoCards);
-	}
-};
-
-var isTwoCards = function() {
-	cardsInPlay.push(this.getAttribute('data-card'));
-	if(cardsInPlay.length==2) {
-		alert(isMatch() + " Your total score is " + score);
-		gameBoard.innerHTML = "";
-		createBoard();
-		cardsInPlay = [];
 	}
 };
 
