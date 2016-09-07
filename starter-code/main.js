@@ -18,10 +18,20 @@ alert("You found a match!")
 var score = 0;
 
 
+
 // An empty placeholder for what will be our cards
 var cardElement;
 
 var wonRound;
+
+
+// A special message and background for players with a score of 10
+var goldStatus = function() {
+	if (score >= 10) {
+		document.body.style.backgroundImage = "url('gold_background.jpg')";
+	alert("Congratulations, oh Master! You have reached a score of 10 and achieved gold status! Relish in all that is your glory!!!")
+	};
+};
 
 
 
@@ -32,11 +42,13 @@ function flipCard() {
 	if (flipped !== 'true'){
 		if (this.getAttribute('data-card') === 'king'){
 			this.innerHTML = "<img src='king_img.jpg'>";
-		} else {
+		} else if (this.getAttribute('data-card') === 'queen') {
 			this.innerHTML = "<img src='queen_img.jpg'>";
+		} else {
+			this.innerHTML = "<img src='ace_of_spades.png'>";
 		}
 		this.setAttribute('data-flipped','true');
-		isTwoCards(this);
+			isTwoCards(this);
 	} else {
 		alert("You flipped this card already. Please pick another one.");
 	}
@@ -48,7 +60,8 @@ var cardsInPlay = [];
 var isMatch = function () {
 	if (cardsInPlay[0] == cardsInPlay[1]) {
 		wonRound = true;
-		score++;
+		score+=3;
+		goldStatus();
  		return('Great! Thats a match!!!');
 	} else {
 		wonRound = false;
@@ -69,7 +82,7 @@ var isTwoCards = function(object) {
 
 
 
-var deck = ['queen','queen','king','king'];
+var deck = ['queen','queen','king','king','ace','ace'];
 
 function shuffle(deck) {
   var currentIndex = deck.length, temporaryValue, randomIndex;
@@ -111,3 +124,10 @@ var createBoard = function() {
 };
 
 createBoard();
+
+
+
+
+
+
+

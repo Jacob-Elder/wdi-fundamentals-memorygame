@@ -8,11 +8,18 @@ body {
 	background-size:cover;
 
 }
+
+#body {
+	background-image:url("gold_background.jpg");
+}
+
 h1 {
-	color:rgb(2,132,130);
+	color:#FFC200;
+	text-shadow:2px 2px #666;
 }
 h2 {
 	color:#ffd700;
+	text-shadow:2px 2px #666;
 }
 
 .card {
@@ -22,7 +29,7 @@ h2 {
 	background-color:yellow;
 	border-radius:10px;
 	float:left;
-	margin:8%;
+	margin:6%;
 } 
 
 #name {
@@ -34,12 +41,10 @@ nav {
 }
 
 nav a {
-	background-color:#ffbf00;
-	color:white;
+	color:yellow;
 	padding:35px;
 	display:block;
-	float:left;
-	color:#808080;
+	float:left;;
 }
 
 nav a:hover {
@@ -56,8 +61,21 @@ nav a:hover {
 	font-size:0;
 }
 
+#info {
+	margin-top:30px;
+}
+
+#info li {
+	list-style:none;
+	display:inline-block;
+	margin:0 60px;
+}
+
+
+
 footer {
 	background-color:#808080;
+	margin-top:25px;
 }
 
 img {
@@ -69,8 +87,8 @@ img {
 }
 
 .goodLuck {
-	height:50%;
-	width:35%;
+	height:100%;
+	width:30%;
 	border-radius:15%;
 	padding-margin:200px;
 }
@@ -81,17 +99,37 @@ img {
 
 #game-board {
 	width:100%;
-	min-width:500px;
-	max-width:700px;
+	min-width:880px;
+	max-width:900px;
 	margin:0 auto;
 }
 
-a {
-	color:#808080;
-}
 
 #yellow {
 	color:yellow;
 }
+
+.active {
+	background-color:#ee5f3c;
+
+}
+
+
+
+
+@media (max-width: 800px) {
+	#info li {
+		display:block;
+	}
+}
+
+
+
+
+
+
+
+
+
 
 
