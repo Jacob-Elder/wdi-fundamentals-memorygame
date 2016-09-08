@@ -115,7 +115,30 @@ img {
 
 }
 
+#score {
+	background-color:#808080;
+	width:100%;
+	max-width:350px;
+	margin:0 auto;
+	padding:5px;
+}
 
+#totalScore {
+	font-size:1.5em;
+	color:yellow;
+}
+
+#score p {
+	display:inline;
+}
+
+.green {
+	color:#1aff1a;
+}
+
+.red {
+	color:#e60000;
+}
 
 
 @media (max-width: 800px) {

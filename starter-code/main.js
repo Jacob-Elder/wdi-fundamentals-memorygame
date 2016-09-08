@@ -17,6 +17,8 @@ alert("You found a match!")
 // A counter to keep track of players score
 var score = 0;
 
+var achievedGold;
+
 
 
 // An empty placeholder for what will be our cards
@@ -24,13 +26,29 @@ var cardElement;
 
 var wonRound;
 
+//var text = document.getElementsById('message').innerHTML;
+
 
 // A special message and background for players with a score of 10
 var goldStatus = function() {
-	if (score >= 10) {
-		document.body.style.backgroundImage = "url('gold_background.jpg')";
-	alert("Congratulations, oh Master! You have reached a score of 10 and achieved gold status! Relish in all that is your glory!!!")
-	};
+
+    if (score >= 10) {
+        if (achievedGold == undefined || achievedGold == false) {
+            alert("Congratulations, oh Master! You have reached a score of 10 and achieved gold status! Relish in all that is your glory!!!")
+        };
+        document.body.style.backgroundImage = "url('gold_background.jpg')";
+        achievedGold = true;
+    } else {
+        document.body.style.backgroundImage = "url('background_img.jpg')";
+        achievedGold = false;
+    };
+
+
+	// if (achievedGold == undefined) {
+	// 	document.body.style.backgroundImage = "url('gold_background.jpg')";
+ //        achievedGold = true;
+	// alert("Congratulations, oh Master! You have reached a score of 10 and achieved gold status! Relish in all that is your glory!!!")
+	// };
 };
 
 
@@ -61,19 +79,24 @@ var isMatch = function () {
 	if (cardsInPlay[0] == cardsInPlay[1]) {
 		wonRound = true;
 		score+=3;
+        document.getElementById('totalScore').innerHTML = 'Total Score:' + score;
+        document.getElementById('message').innerHTML = "Great! Thats a match!!!";
+        document.getElementById('message').className="green";
 		goldStatus();
- 		return('Great! Thats a match!!!');
 	} else {
 		wonRound = false;
 		score--;
- 		return("Uh Oh! The cards don't match.");
+        document.getElementById('totalScore').innerHTML = "Total Score:" + score;
+        document.getElementById('message').innerHTML = "Uh Oh! Those two cards don't match.";
+        document.getElementById('message').className="red";
+        goldStatus();
 	}
 };
 
 var isTwoCards = function(object) {
 	cardsInPlay.push(object.getAttribute('data-card'));
 	if(cardsInPlay.length==2) {
-		alert(isMatch() + " Your total score is " + score);
+        isMatch();
 		gameBoard.innerHTML = "";
 		createBoard();
 		cardsInPlay = [];
